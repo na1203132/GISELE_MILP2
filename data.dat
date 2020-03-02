@@ -1,0 +1,9 @@
+param: V_ref := 20; 
+param: A_ref := 1;
+param: R_ref := 0.42;
+param: X_ref := 0.39;
+param: P_max := 5;
+param: cf := 20000;
+param: E_min := 0.9;
+param: E_max := 1.1;
+
