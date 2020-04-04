@@ -171,7 +171,7 @@ instance = model.create_instance(data)
 print('Instance is constructed:', instance.is_constructed())
 #opt = SolverFactory('cbc',executable=r'C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\Gisele_MILP\cbc')
 opt = SolverFactory('gurobi')
-opt.options['mipgap'] = 0.4
+opt.options['mipgap'] = 0.2
 
 #opt = SolverFactory('cbc',executable=r'C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\cbc')
 print('Starting optimization process')
