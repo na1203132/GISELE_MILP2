@@ -8,7 +8,7 @@ Created on Fri Oct 11 16:45:24 2019
 
 import pandas as pd
 connections=pd.read_csv('connections_output.csv')
-coordinates=pd.read_csv( r'C:\Users\silvi\Politecnico di Milano\Alessandro Bosisio - Feeder routing\Modello Gisele\Namanjavira.csv')
+coordinates=pd.read_csv(r'C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\Gisele_MILP-master\Cluster4.csv')
 #voltages=pd.read_csv( 'Voltage.csv',names=['Voltage [p.u.]','id','PS','P in [MW]'])
 #power=pd.read_csv('Power.csv',names=['Power [MW]'])
 

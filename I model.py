@@ -4,6 +4,7 @@ Created on Thu Dec 19 16:12:21 2019
 
 @author: Silvia
 """
+
 from __future__ import division
 
 from pyomo.opt import SolverFactory
@@ -26,7 +27,7 @@ data.load(filename='nodes.csv', set=model.N) #first row is not read
 model.PS=Set(within=model.N)
 data.load(filename='PS.csv',set=model.PS)
 #Allowed connections
-model.links=Set(dimen=2,within=model.N*model.N) #in the csv the values must be delimited by commas
+model.links=Set(dimen=2) #in the csv the values must be delimited by commas
 data.load(filename='links.csv', set=model.links)
 
 #Nodes are divided into two sets, as suggested in https://pyomo.readthedocs.io/en/stable/pyomo_modeling_components/Sets.html:
@@ -104,9 +105,9 @@ model.z = Var(model.links)
 
 #####################Define constraints###############################
 
-def Radiality_rule(model):
-    return summation(model.x)==len(model.N)-1
-model.Radiality = Constraint(rule=Radiality_rule)
+#def Radiality_rule(model):
+#    return summation(model.x)==len(model.N)-1
+#model.Radiality = Constraint(rule=Radiality_rule)
 
 def Power_flow_conservation_rule(model,node):
     return (sum(model.P[j,node]for j in model.NodesIn[node])-sum(model.P[node,j] for j in model.NodesOut[node]))==model.Psub[node]
@@ -134,6 +135,7 @@ def Voltage_linearization_rule_2(model,i,j):
 model.Voltage_linearization_rule_2=Constraint(model.links, rule=Voltage_linearization_rule_2)
 
 def Voltage_linearization_rule_3(model,i,j):
+
     return model.E[i]-model.E[j]-(1-model.x[i,j])*model.M_max <= model.z[i,j]
 model.Voltage_linearization_rule_3=Constraint(model.links, rule=Voltage_linearization_rule_3)
 
@@ -164,11 +166,14 @@ def ObjectiveFunction(model):
 model.Obj = Objective(rule=ObjectiveFunction, sense=minimize)
 
 #############Solve model##################
+
 instance = model.create_instance(data)
 print('Instance is constructed:', instance.is_constructed())
-#opt = SolverFactory('cplex',executable=r'C:\Users\silvi\IBM\ILOG\CPLEX_Studio1210\cplex\bin\x64_win64\cplex')
-#opt = SolverFactory('glpk')
-opt = SolverFactory('cbc',executable=r'C:\Users\silvi\Cbc-2.9.9-x86_64-w64-mingw32\bin\cbc')
+#opt = SolverFactory('cbc',executable=r'C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\Gisele_MILP\cbc')
+opt = SolverFactory('gurobi')
+opt.options['mipgap'] = 0.4
+
+#opt = SolverFactory('cbc',executable=r'C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\cbc')
 print('Starting optimization process')
 time_i=datetime.now()
 opt.solve(instance,tee=True)
