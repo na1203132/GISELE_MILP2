@@ -23,9 +23,7 @@ data = DataPortal()
 model.N=Set()
 data.load(filename='nodes.csv', set=model.N) #first row is not read
 
-#Node corresponding to primary substation
-model.PS=Set(within=model.N)
-data.load(filename='PS.csv',set=model.PS)
+
 #Allowed connections
 model.links=Set(dimen=2) #in the csv the values must be delimited by commas
 data.load(filename='links.csv', set=model.links)
@@ -54,13 +52,12 @@ model.NodesIn = Set(model.N, initialize=NodesIn_init)
 #####################Define parameters#####################
 
 #Electric power in the nodes (injected (-) or absorbed (+))
-model.Psub=Param(model.N)
-data.load(filename='power.csv', param=model.Psub)
+model.P_SS=Param(model.N)
+data.load(filename='power.csv', param=model.P_SS) # (-)
 
-#Power of the primary substation as sum of all the other powers
-def PPS_init(model):
-    return sum(model.Psub[i] for i in model.N)
-model.PPS=Param(model.PS,initialize=PPS_init)
+
+model.P_PS=Param(model.N)
+data.load(filename='power_PS.csv', param=model.P_PS) # (+)
 
 #Connection distance of all the edges
 model.dist=Param(model.links)
@@ -75,6 +72,8 @@ model.P_max=Param()
 model.cf=Param()
 model.E_min=Param()
 model.E_max=Param()
+model.cPS=Param()
+model.PPS_max=Param()
 
 data.load(filename='data.dat')
 
@@ -102,15 +101,17 @@ model.P = Var(model.links)
 model.E = Var(model.N,within=NonNegativeReals)
 #variables z(i,j) is the variable necessary to linearize
 model.z = Var(model.links)
+#binary variable k[i]: 1 if node i is a primary substation, 0 otherwise
+model.k = Var(model.N, within=Binary)
 
 #####################Define constraints###############################
 
-#def Radiality_rule(model):
-#    return summation(model.x)==len(model.N)-1
-#model.Radiality = Constraint(rule=Radiality_rule)
+def Radiality_rule(model):
+    return summation(model.x)==len(model.N)-summation(model.k)
+model.Radiality = Constraint(rule=Radiality_rule)
 
 def Power_flow_conservation_rule(model,node):
-    return (sum(model.P[j,node]for j in model.NodesIn[node])-sum(model.P[node,j] for j in model.NodesOut[node]))==model.Psub[node]
+    return (sum(model.P[j,node]for j in model.NodesIn[node])-sum(model.P[node,j] for j in model.NodesOut[node]))==  abs(model.P_SS[node]) - (model.P_PS[node]*model.k[node])
 model.Power_flow_conservation = Constraint(model.N, rule=Power_flow_conservation_rule)
 
 def Power_upper_bounds_rule(model,i,j):
@@ -119,7 +120,7 @@ model.upper_Power_limits = Constraint(model.links, rule=Power_upper_bounds_rule)
 
 def Power_lower_bounds_rule(model,i,j):
     return model.P[i,j] >= -model.P_max*model.x[i,j]
-model.lower_Power_limits = Constraint(model.links, rule=Power_upper_bounds_rule)
+model.lower_Power_limits = Constraint(model.links, rule=Power_lower_bounds_rule)
 
 #Voltage constraints
 def Voltage_balance_rule(model,i,j):
@@ -156,13 +157,24 @@ def Voltage_upper_bound_rule(model,i):
 model.Voltage_upper_bound=Constraint(model.N,rule=Voltage_upper_bound_rule)
 
 def Voltage_primary_substation_rule(model,i):
-    return model.E[i]==1
-model.Voltage_primary_substation=Constraint(model.PS,rule=Voltage_primary_substation_rule)
+    return model.E[i]*model.k[i]==1
+model.Voltage_primary_substation=Constraint(model.N,rule=Voltage_primary_substation_rule)
+
+
+def PS_power_rule (model,i):
+    return model.P_PS[i] * model.k[i] <= model.PPS_max
+model.PS_power= Constraint(model.N, rule=PS_power_rule)
+
+
+#def Balance_rule(model):
+#    return (sum(model.P_PS[i] *model.k[i] for i in model.N) - abs(sum(model.P_SS[i] for i in model.N) )) == 0
+#model.Balance= Constraint(rule=Balance_rule)
+
 
 ####################Define objective function##########################
 
 def ObjectiveFunction(model):
-    return summation(model.dist,model.x)*model.cf/1000
+    return summation(model.dist,model.x)*model.cf/1000 +summation(model.k)*model.cPS
 model.Obj = Objective(rule=ObjectiveFunction, sense=minimize)
 
 #############Solve model##################
@@ -171,7 +183,7 @@ instance = model.create_instance(data)
 print('Instance is constructed:', instance.is_constructed())
 #opt = SolverFactory('cbc',executable=r'C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\Gisele_MILP\cbc')
 opt = SolverFactory('gurobi')
-opt.options['mipgap'] = 0.4
+#opt.options['mipgap'] = 0.4
 
 #opt = SolverFactory('cbc',executable=r'C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\cbc')
 print('Starting optimization process')
