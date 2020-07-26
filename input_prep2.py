@@ -9,7 +9,7 @@ import numpy as np
 from scipy.spatial import distance_matrix
 from scipy.spatial import KDTree
 
-df=pd.read_csv(r"C:\Users\Asus\Documents\GitHub\Gisele_MILP\Namanjavira.csv")
+df=pd.read_csv(r"C:\Users\Asus\Documents\GitHub\Gisele_MILP\Cluster4.csv")
 
 
 #for i in df.index:
@@ -26,19 +26,20 @@ Dist_matrix=pd.DataFrame(distance_matrix(coords.values, coords.values), index=df
 Weight=pd.DataFrame()
 second=pd.DataFrame()
 df.index=df['id']
+Weight=df['Weight']
 
 
 k=0
-#for i, row in df.iterrows():
- #   if df.loc[i,'Population'] > 10:
- #      df[i, 'Weight']= 0
+for i, row in df.iterrows():
+    if df.loc[i,'Population'] > 10:
+       df[i, 'Weight']= 0
 
 
 
  #create new column with absorbed power
 
 df=df.assign(Power=0.1)
-#df['Power']=df['Population'].apply(lambda x: '0' if x == 0  else '0.1')
+df['Power']=df['Population'].apply(lambda x: '0' if x == 0  else '0.1')
 #df['Power']=df['Population'].apply(lambda x: '0.1' if x < 10  else '-0.1')
 
 
@@ -61,7 +62,7 @@ for i, row in Dist_matrix.iterrows():
             else:
                 connection.loc[k, 'id1'] = j
                 connection.loc[k, 'id2'] = i
-            connection.loc[k,'distance']=column #* ((Weight[i]+Weight[j])/2)
+            connection.loc[k,'distance']=column * ((Weight[i]+Weight[j])/2)
             k=k+1
 
 connection.drop_duplicates(inplace=True)
@@ -103,7 +104,7 @@ connection.drop_duplicates(inplace=True)
 
 
 for i in connection.index:
-    if connection.loc[i,'distance'] > 10000 :# * ((Weight[connection.loc[i,'id1']]+Weight[connection.loc[i,'id2']])/2):
+    if connection.loc[i,'distance'] > 2000 * ((Weight[connection.loc[i,'id1']]+Weight[connection.loc[i,'id2']])/2):
         connection.drop(i,inplace=True)
 
 

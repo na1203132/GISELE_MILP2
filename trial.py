@@ -24,8 +24,7 @@ model.N=Set()
 data.load(filename='nodes.csv', set=model.N) #first row is not read
 
 #Node corresponding to primary substation
-model.PS=Set()
-data.load(filename='PS.csv',set=model.PS)
+
 #Allowed connections
 model.links=Set(dimen=2) #in the csv the values must be delimited by commas
 data.load(filename='links.csv', set=model.links)
@@ -57,6 +56,8 @@ model.NodesIn = Set(model.N, initialize=NodesIn_init)
 model.Psub=Param(model.N)
 data.load(filename='power.csv', param=model.Psub)
 
+model.PS=Param(model.N)
+data.load(filename='PS.csv',param=model.PS)
 
 #Power of the primary substation as sum of all the other powers
 #def PPS_init(model):
@@ -109,16 +110,17 @@ model.E = Var(model.N,within=NonNegativeReals)
 model.z = Var(model.links)
 #binary variable k[i]: 1 if node i is a primary substation, 0 otherwise
 model.k = Var(model.N, within=Binary)
+#Power output of Primary substation
 model.PPS=Var(model.N)
 
 #####################Define constraints###############################
 
-def Radiality_rule(model):
-    return summation(model.x)==len(model.N)-summation(model.k)
-model.Radiality = Constraint(rule=Radiality_rule)
+# def Radiality_rule(model):
+#    return summation(model.x)==len(model.N)-summation(model.k)
+# model.Radiality = Constraint(rule=Radiality_rule)
 
 def Power_flow_conservation_rule(model,node):
-    return (sum(model.P[j,node]for j in model.NodesIn[node])-sum(model.P[node,j] for j in model.NodesOut[node])) ==  model.Psub[node] - model.PPS[node] * model.k[node]
+    return (sum(model.P[j,node]for j in model.NodesIn[node])-sum(model.P[node,j] for j in model.NodesOut[node])) ==  model.Psub[node] - model.PPS[node] * model.k[node]* model.PS[node]
 model.Power_flow_conservation = Constraint(model.N, rule=Power_flow_conservation_rule)
 
 def Power_upper_bounds_rule(model,i,j):
@@ -168,11 +170,11 @@ model.Voltage_upper_bound=Constraint(model.N,rule=Voltage_upper_bound_rule)
 #model.Voltage_primary_substation=Constraint(model.PS,rule=Voltage_primary_substation_rule)
 
 def PS_power_rule_upper (model,i):
-    return model.PPS[i] <= model.PPS_max *model.k[i]
+    return model.PPS[i] <= model.PPS_max *model.k[i] *model.PS[i]
 model.PS_power_upper= Constraint(model.N, rule=PS_power_rule_upper)
 
 def PS_power_rule_lower (model,i):
-    return model.PPS[i] >= model.PPS_min *model.k[i]
+    return model.PPS[i] >= model.PPS_min *model.k[i] * model.PS[i]
 model.PS_power_lower= Constraint(model.N, rule=PS_power_rule_lower)
 
 def Balance_rule(model):
@@ -192,7 +194,7 @@ instance = model.create_instance(data)
 print('Instance is constructed:', instance.is_constructed())
 #opt = SolverFactory('cbc',executable=r'C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\Gisele_MILP\cbc')
 opt = SolverFactory('gurobi')
-
+opt.options['mipgap'] = 0.30
 
 #opt = SolverFactory('cbc',executable=r'C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\cbc')
 print('Starting optimization process')
@@ -202,19 +204,20 @@ time_f=datetime.now()
 print('Time required for optimization is', time_f-time_i)
 links=instance.x
 power=instance.P
-subs= instance.k
+voltage=instance.E
 PS=instance.PPS
 
 connections_output=pd.DataFrame(columns=[['id1','id2']])
 k=0
 for index in links:
     if int(round(value(links[index])))==1:
-        connections_output.loc[k,'id1']=index[0]
-        connections_output.loc[k,'id2']=index[1]
-        k=k+1
-
-for index in subs:
-    if int(round(value(subs[index])))==1:
-        print(((value(PS[index]))))
+        #if abs(value(power[index])) > 0.5:
+            connections_output.loc[k,'id1']=index[0]
+            connections_output.loc[k,'id2']=index[1]
+            k=k+1
 
 connections_output.to_csv('connections_output.csv')
+
+for index in voltage:
+    #if int(round(value(subs[index])))==1:
+        print(((value(voltage[index]))),"index",index)

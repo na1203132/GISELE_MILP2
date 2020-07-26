@@ -1,0 +1,25 @@
+param: V_ref := 20; 
+
+param: A_ref := 1;
+
+param: Cable_Types := 2;                              # Number of cable types
+
+param: R_ref :=    #Resistance of each cable type [Ohm/km]
+1  0.42
+2  0.52;
+
+param: X_ref :=    #Reactance of each cable type [Ohm/km]
+1  0.39
+2  0.49;
+
+param: P_max :=	   #Maximum power flow of each cable type [MW]
+1  5
+2  1;
+
+param: cf :=   #Cost of lines [€/km]
+1  20000
+2  10000;
+
+param: E_min := 0.9;
+param: E_max := 1.1;
+

@@ -54,6 +54,22 @@ def NodesIn_init(model, node):
     return retval
 model.NodesIn = Set(model.SS, initialize=NodesIn_init)
 
+def PSNodesOut_init(model, node):
+    retval = []
+    for (i,j) in model.links:
+        if i == node:
+            retval.append(j)
+    return retval
+model.PSNodesOut = Set(model.PS, initialize=PSNodesOut_init)
+
+def PSNodesIn_init(model, node):
+    retval = []
+    for (i,j) in model.links:
+        if j == node:
+            retval.append(i)
+    return retval
+model.PSNodesIn = Set(model.PS, initialize=PSNodesIn_init)
+
 
 
 
@@ -63,11 +79,6 @@ model.NodesIn = Set(model.SS, initialize=NodesIn_init)
 #Electric power in the nodes (injected (-) or absorbed (+))
 model.PSS=Param(model.SS)
 data.load(filename='power.csv', param=model.PSS)
-
-#def PPS_init(model):
-#    return sum(model.PSS[i] for i in model.SS)
-model.PPS=Param(model.PS)
-data.load(filename='power_PS.csv', param=model.PPS)
 
 
 #Connection distance of all the edges
@@ -86,6 +97,7 @@ model.cPS=Param()
 model.E_min=Param()
 model.E_max=Param()
 model.PPS_max=Param()
+model.PPS_min=Param()
 
 
 data.load(filename='data.dat')
@@ -110,17 +122,16 @@ model.M_min=Param(initialize=-10)
 
 #binary variable x[i,j]: 1 if the connection i,j is present, 0 otherwise
 model.x = Var(model.links, within=Binary)
-#binary variable k[i]: 1 if node i is a primary substation, 0 otherwise
-model.k = Var(model.PS, within=Binary)
-#binary variable y[i,j]: 1 if node j is supplied from primary substation i
-model.y = Var(model.PS,model.SS, within=Binary)
 #power[i,j] is the power flow of connection i-j
 model.P = Var(model.links)
 #positive variables E(i) is p.u. voltage at each node
 model.E = Var(model.N,within=NonNegativeReals)
 #variables z(i,j) is the variable necessary to linearize
 model.z = Var(model.links)
-
+#binary variable k[i]: 1 if node i is a primary substation, 0 otherwise
+model.k = Var(model.PS, within=Binary)
+#Power output of Primary substation
+model.PPS=Var(model.PS)
 
 
 #####################Define constraints###############################
@@ -132,6 +143,8 @@ model.Radiality = Constraint(rule=Radiality_rule)
 def Power_flow_conservation_rule(model,node):
     return (sum(model.P[j,node]for j in model.NodesIn[node])-sum(model.P[node,j] for j in model.NodesOut[node])) == model.PSS[node]
 model.Power_flow_conservation = Constraint(model.SS, rule=Power_flow_conservation_rule)
+
+
 
 def Power_upper_bounds_rule(model,i,j):
     return model.P[i,j] <= model.P_max*model.x[i,j]
@@ -171,24 +184,26 @@ def Voltage_lower_bound_rule(model,i):
     return model.E_min<=model.E[i]
 model.Voltage_lower_bound=Constraint(model.SS,rule=Voltage_lower_bound_rule)
 
-
 def Voltage_upper_bound_rule(model,i):
     return model.E_max>=model.E[i]
 model.Voltage_upper_bound=Constraint(model.SS,rule=Voltage_upper_bound_rule)
 
-
 def Voltage_primary_substation_rule(model,i):
-    return model.E[i] *model.k[i]==1
+    return model.E[i] *model.k[i] ==1
 model.Voltage_primary_substation=Constraint(model.PS,rule=Voltage_primary_substation_rule)
 
-def PS_power_rule (model,i):
-    return model.PPS[i]* model.k[i]  <=model.PPS_max
-model.PS_power= Constraint(model.PS, rule=PS_power_rule)
+def PS_power_rule_upper (model,i):
+    return model.PPS[i] <= model.PPS_max *model.k[i]
+model.PS_power_upper= Constraint(model.PS, rule=PS_power_rule_upper)
 
+def PS_power_rule_lower (model,i):
+    return model.PPS[i] >= model.PPS_min *model.k[i]
+model.PS_power_lower= Constraint(model.PS, rule=PS_power_rule_lower)
 
 def Balance_rule(model):
-   return (sum(model.PPS[i] *model.k[i] for i in model.PS) - sum(model.PSS[i] for i in model.SS) ) == 0
+    return (sum(model.PPS[i]  for i in model.PS) - sum(model.PSS[i] for i in model.SS)) == 0
 model.Balance= Constraint(rule=Balance_rule)
+
 
 ####################Define objective function##########################
 

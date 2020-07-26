@@ -1,0 +1,7 @@
+Unnamed_ 0,ID,X,Y,Population,Elevation,Weight,clusters,ID1,ID2,Weight_2,line_lengt,line_len_1,nearest_gr,layer,path,i
+"2520","2521",171395.195199999987381,8516148.335000000894070,"0",504.139007600000014,9.466705788695410,"-1","2521","2483","30433",1416.765259326474279,,,Total_Interconnection,"MultiPoint?crs=EPSG:32723&field=Unnamed_%200:long(18,0)&field=ID:long(18,0)&field=X:double(23,15)&field=Y:double(23,15)&field=Population:long(18,0)&field=Elevation:double(23,15)&field=Weight:double(23,15)&field=clusters:long(18,0)&field=ID1:long(18,0)&fi","1"
+"378","379",187921.423700000013923,8449603.992999998852611,"7",446.315002400000026,7.102314922241081,"1",,,,,,"379",connection_0,C:/Users/Asus/Desktop/Vinicius/Grids/connection_0.shp,"2"
+,"5559",232102.508600000001024,8494472.640000000596046,"0",1075.099975999999970,3.076685240477417,,,,,,,"5559",connection_2,C:/Users/Asus/Desktop/Vinicius/Grids/connection_2.shp,"3"
+,"7075",237818.219600000011269,8475921.712999999523163,"2",760.726989700000104,1.000000000000000,,,,,,,"7075",connection_3,C:/Users/Asus/Desktop/Vinicius/Grids/connection_3.shp,"4"
+,"1581",175492.026299999997718,8485698.219000000506639,"0",577.377014200000190,3.596792488764210,,,,,,,"1581",connection_4,C:/Users/Asus/Desktop/Vinicius/Grids/connection_4.shp,"5"
+,"2502",172038.357300000003306,8497423.669999999925494,"0",422.743011500000023,1.000000000000000,,,,,,,"2502",connection_5,C:/Users/Asus/Desktop/Vinicius/Grids/connection_5.shp,"6"

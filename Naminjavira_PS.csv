@@ -1,0 +1,55 @@
+PS,X,Y,id,longitude,latitude,nearest_zi,w,layer,path
+"1",233449.395972482,8147054.56420259,"1",,,,,Added geom info,"Point?crs=EPSG:32337&field=id:long(10,0)&field=PS:integer(0,0)&field=xcoord:double(0,0)&field=ycoord:double(0,0)&uid={72fa924b-19dd-465d-9d75-e830b5fdc1f0}"
+"1",245752.862257496,8140307.09442457,"2",,,,,Added geom info,"Point?crs=EPSG:32337&field=id:long(10,0)&field=PS:integer(0,0)&field=xcoord:double(0,0)&field=ycoord:double(0,0)&uid={72fa924b-19dd-465d-9d75-e830b5fdc1f0}"
+"1",241796.88014761,8134670.71670222,"3",,,,,Added geom info,"Point?crs=EPSG:32337&field=id:long(10,0)&field=PS:integer(0,0)&field=xcoord:double(0,0)&field=ycoord:double(0,0)&uid={72fa924b-19dd-465d-9d75-e830b5fdc1f0}"
+"1",254389.488368471,8132868.19446219,"4",,,,,Added geom info,"Point?crs=EPSG:32337&field=id:long(10,0)&field=PS:integer(0,0)&field=xcoord:double(0,0)&field=ycoord:double(0,0)&uid={72fa924b-19dd-465d-9d75-e830b5fdc1f0}"
+"0",234390.3746,8146345.122,"5",36.508609999999997,-16.750820000000001,"5988","64",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",234771.2054,8146845.86,"6",36.512239999999998,-16.746340000000000,"5899","32",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",235074.9519,8144615.303,"7",36.514830000000003,-16.766520000000000,"6363","104",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",235371.2038,8145955.816,"8",36.517760000000003,-16.754449999999999,"6050","124",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",236040.193,8145454.335,"9",36.523969999999998,-16.759049999999998,"6165","136",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",236078.2508,8146860.9,"10",36.524490000000000,-16.746350000000000,"5905","36",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",237116.6591,8146260.72,"11",36.534160000000000,-16.751890000000000,"6009","40",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",237257.7195,8145296.698,"12",36.535370000000000,-16.760610000000000,"6249","156",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",238643.462,8145137.002,"13",36.548340000000003,-16.762210000000000,"6281","176",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",237806.8218,8144193.396,"14",36.540390000000002,-16.770640000000000,"6599","172",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",239380.9252,8144379.557,"15",36.555160000000001,-16.769130000000001,"6534","220",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",239014.1692,8141184.443,"16",36.551360000000003,-16.797950000000000,"7914","176",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",238934.4726,8142955.328,"17",36.550809999999998,-16.781939999999999,"7016","60",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",240175.8302,8143420.858,"18",36.562510000000003,-16.777880000000000,"6960","372",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",241477.5004,8143883.893,"19",36.574759999999998,-16.773840000000000,"6783","448",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",240261.4014,8141901.347,"20",36.563130000000001,-16.791609999999999,"7393","540",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",239347.409,8140156.472,"21",36.554360000000003,-16.807269999999999,"8288","232",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",241471.0139,8141748.145,"22",36.574460000000002,-16.793130000000001,"7529","1384",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",241296.8837,8139250.343,"23",36.572539999999996,-16.815670000000001,"8564","348",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",243137.8551,8141900.144,"24",36.590100000000000,-16.791940000000000,"7427","184",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",242050.3795,8140767.861,"25",36.579780000000000,-16.802050000000001,"8105","792",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",242077.6785,8137694.684,"26",36.579680000000003,-16.829809999999998,"9228","204",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",243052.5636,8140065.238,"27",36.589089999999999,-16.808499999999999,"8375","792",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",241454.2064,8136584.421,"28",36.573709999999998,-16.839759999999998,"9848","232",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",241096.7958,8135454.598,"29",36.570219999999999,-16.849930000000001,"10497","200",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",243735.8134,8138772.492,"30",36.595350000000003,-16.820250000000001,"8734","680",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",244186.7061,8138058.67,"31",36.599499999999999,-16.826750000000001,"9051","444",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",243737.9883,8135656.945,"32",36.595019999999998,-16.848389999999998,"10340","340",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",245065.1227,8137127.085,"33",36.607630000000000,-16.835260000000002,"9634","468",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",245900.2415,8137714.061,"34",36.615530000000000,-16.830050000000000,"9252","360",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",246621.1861,8137658.286,"35",36.622290000000000,-16.830629999999999,"9311","272",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",247583.6859,8137475.606,"36",36.631290000000000,-16.832390000000000,"9481","288",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",242890.7797,8134080.251,"37",36.586889999999997,-16.862539999999999,"11119","736",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",247754.7626,8130541.879,"38",36.632120000000000,-16.895029999999998,"12388","588",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",247916.9089,8126511.662,"39",36.633180000000003,-16.931450000000002,"13067","420",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",247644.5388,8128567.666,"40",36.630859999999998,-16.912849999999999,"12806","304",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",247911.1947,8132528.474,"41",36.633809999999997,-16.877099999999999,"11662","344",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",248892.7081,8134135.206,"42",36.643189999999997,-16.862700000000000,"11083","360",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",248253.5542,8136602.239,"43",36.637479999999996,-16.840350000000001,"9884","340",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",249007.986,8135680.906,"44",36.644449999999999,-16.848749999999999,"10372","700",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",249674.6934,8136578.829,"45",36.650799999999997,-16.840710000000001,"9856","156",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",249933.2449,8135651.996,"46",36.653120000000001,-16.849110000000000,"10433","336",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",250824.8806,8136321.458,"47",36.661560000000001,-16.843160000000001,"10040","304",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",250612.6165,8135654.306,"48",36.659500000000001,-16.849160000000001,"10438","404",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",251418.9903,8137293.957,"49",36.667240000000000,-16.834440000000001,"9593","360",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",251255.8233,8135227.218,"50",36.665480000000002,-16.853090000000002,"10675","144",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",252140.9376,8134896.119,"51",36.673749999999998,-16.856169999999999,"10830","180",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",252705.7447,8134062.417,"52",36.678950000000000,-16.863759999999999,"11133","196",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",253005.8463,8132854.837,"53",36.681629999999998,-16.874700000000001,"11568","44",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
+"0",253556.7483,8134313.73,"54",36.686959999999999,-16.861580000000000,"14268","8",namanjavira,C:\Users\Asus\Desktop\POLIMI\Thesis\GISELE\New folder\namanjavira.shp|layername=namanjavira
